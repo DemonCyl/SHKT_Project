@@ -1,0 +1,113 @@
+﻿<Window x:Class="SHKT_Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
+        xmlns:local="clr-namespace:SHKT_Project"
+        mc:Ignorable="d" Closing="Window_Closing"
+        Title="主界面" Height="470" Width="800">
+    <Grid Background="#FFAAE4FF">
+        <Viewbox VerticalAlignment="Top" >
+            <Canvas x:Name="Canvas1" Width="840" Height="470">
+                <Menu x:Name="menu" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FFAAE4FF" BorderThickness="0" Width="840">
+                    <MenuItem Header="校验码配置" FontSize="12"  Foreground="Black" FontFamily="Microsoft Yahei" Background="Wheat" Click="Config_Click" Width="80" FontWeight="ExtraBlack"/>
+                    <MenuItem Header="记录查询" FontSize="12" Foreground="Black" FontFamily="Microsoft Yahei" Background="Wheat" Click="Query_Click" Width="68" FontWeight="ExtraBlack"/>
+                </Menu>
+
+                <Button  Height="39" Width="163" Content="装配条码打印" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="22" Foreground="Black"
+                         pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="12" Canvas.Left="30" Canvas.Top="36" Click="OutPut_Click" FontWeight="Bold" />
+                <TextBox  Height="39" Width="240" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" FontFamily="Microsoft Yahei" FontSize="22" Text=""  FontWeight="Black"
+                    Canvas.Left="270" Canvas.Top="36" pu:TextBoxHelper.CornerRadius="7" x:Name="typeName" IsReadOnly="True" />
+                <Button  Height="39" Width="68" Content="切换" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="22" Foreground="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="12" Canvas.Left="515" Canvas.Top="36" Click="Button_Click" FontWeight="Black" />
+
+                <Label Content="装配条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="22" Canvas.Top="122" FontWeight="ExtraBlack"/>
+                <TextBox x:Name="gwcode1"  Height="27" Width="180" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True" 
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" Canvas.Left="22" Canvas.Top="154" FontWeight="Black" />
+                <ListBox x:Name="list1" Height="185" Canvas.Left="22" Canvas.Top="210" Width="180" FontSize="15"/>
+                <Label Content="零件条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="22" Canvas.Top="181" FontWeight="ExtraBlack" />
+                <TextBox x:Name="gw1"  Height="27" Width="180" Text="OP01" FontFamily="Microsoft Yahei" FontSize="17" HorizontalContentAlignment="Center" IsReadOnly="True"
+                     pu:TextBoxHelper.CornerRadius="7" Canvas.Left="22" Canvas.Top="95" FontWeight="Black" Background="#FF0D77F0" Foreground="White" />
+
+                <Label Content="装配条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="229" Canvas.Top="121" FontWeight="ExtraBlack"/>
+                <TextBox x:Name="gwcode2"  Height="27" Width="180" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" Canvas.Left="229" Canvas.Top="153"  FontWeight="Black" />
+                <ListBox x:Name="list2" Height="185" Canvas.Left="229" Canvas.Top="209" Width="180" FontSize="15"/>
+                <Label Content="零件条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="229" Canvas.Top="180" FontWeight="ExtraBlack" />
+                <TextBox x:Name="gw1_Copy"  Height="27" Width="180" Text="OP40" FontFamily="Microsoft Yahei" FontSize="17" HorizontalContentAlignment="Center" IsReadOnly="True"
+                    pu:TextBoxHelper.CornerRadius="7" Canvas.Left="229" Canvas.Top="94" FontWeight="Black" Background="#FF0D77F0" Foreground="White" />
+
+                <Label Content="装配条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="435" Canvas.Top="122" FontWeight="ExtraBlack"/>
+                <TextBox x:Name="gwcode3"  Height="27" Width="180" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" Canvas.Left="435" Canvas.Top="154"  FontWeight="Black"/>
+                <ListBox x:Name="list3" Height="185" Canvas.Left="435" Canvas.Top="210" Width="180" FontSize="15"/>
+                <Label Content="零件条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="435" Canvas.Top="181" FontWeight="ExtraBlack" />
+                <TextBox x:Name="gw1_Copy1"  Height="27" Width="180" Text="OP70" FontFamily="Microsoft Yahei" FontSize="17" HorizontalContentAlignment="Center" IsReadOnly="True"
+                    pu:TextBoxHelper.CornerRadius="7" Canvas.Left="435" Canvas.Top="95" FontWeight="Black" Background="#FF0D77F0" Foreground="White" />
+
+                <Label Content="装配条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="639" Canvas.Top="121" FontWeight="ExtraBlack"/>
+                <TextBox x:Name="gwcode4"  Height="27" Width="180" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" Canvas.Left="639" Canvas.Top="153"  FontWeight="Black"/>
+                <ListBox x:Name="list4" Height="185" Canvas.Left="639" Canvas.Top="209" Width="180" FontSize="15"/>
+                <Label Content="气检数据" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="639" Canvas.Top="180" FontWeight="ExtraBlack" />
+                <TextBox x:Name="gw1_Copy2"  Height="27" Width="180" Text="OP80" FontFamily="Microsoft Yahei" FontSize="17" HorizontalContentAlignment="Center" IsReadOnly="True"
+                    pu:TextBoxHelper.CornerRadius="7" Canvas.Left="639" Canvas.Top="94" FontWeight="Black" Background="#FF0D77F0" Foreground="White" />
+
+                <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="0" BorderThickness="0" Height="62" Width="180" Canvas.Top="401" Background="Yellow" Canvas.Left="22">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush SpreadMethod="Repeat" StartPoint="0, 5" EndPoint="5, 0" MappingMode="Absolute">
+                            <GradientStop Color="White" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <TextBox Foreground="Red" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="提醒" FontWeight="Black" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="0" Background="Yellow" Canvas.Left="22" Canvas.Top="401" Height="62" Width="32" />
+                <TextBox x:Name="remark1" Foreground="Red" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="0" Background="Yellow" Canvas.Left="59" Canvas.Top="401" Height="62" Width="143" />
+
+                <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="0" BorderThickness="0" Height="62" Width="180" Canvas.Top="401" Background="Yellow" Canvas.Left="229">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush SpreadMethod="Repeat" StartPoint="0, 5" EndPoint="5, 0" MappingMode="Absolute">
+                            <GradientStop Color="White" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <TextBox Foreground="Red" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="提醒" FontWeight="Black" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="0" Background="Yellow" Canvas.Left="229" Canvas.Top="401" Height="62" Width="32" />
+                <TextBox x:Name="remark2" Foreground="Red" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="0" Background="Yellow" Canvas.Left="266" Canvas.Top="401" Height="62" Width="143" />
+
+                <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="0" BorderThickness="0" Height="62" Width="180" Canvas.Top="400" Background="Yellow" Canvas.Left="435">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush SpreadMethod="Repeat" StartPoint="0, 5" EndPoint="5, 0" MappingMode="Absolute">
+                            <GradientStop Color="White" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <TextBox Foreground="Red" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="提醒" FontWeight="Black" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="0" Background="Yellow" Canvas.Left="435" Canvas.Top="400" Height="62" Width="32" />
+                <TextBox x:Name="remark3" Foreground="Red" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="0" Background="Yellow" Canvas.Left="472" Canvas.Top="400" Height="62" Width="143" />
+
+                <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="0" BorderThickness="0" Height="62" Width="180" Canvas.Top="399" Background="Yellow" Canvas.Left="639">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush SpreadMethod="Repeat" StartPoint="0, 5" EndPoint="5, 0" MappingMode="Absolute">
+                            <GradientStop Color="White" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <TextBox Foreground="Red" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="提醒" FontWeight="Black" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" VerticalContentAlignment="Center" TextWrapping="Wrap" BorderThickness="0" Background="Yellow" Canvas.Left="639" Canvas.Top="400" Height="62" Width="32" />
+                <TextBox x:Name="remark4" Foreground="Red" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="0" Background="Yellow" Canvas.Left="676" Canvas.Top="399" Height="62" Width="143" />
+                <Label Content="PLC状态" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="654" Canvas.Top="43" FontWeight="ExtraBlack"/>
+                <Image x:Name="PLCImage" Width="15" Height="13" Canvas.Left="731" Canvas.Top="50"/>
+
+            </Canvas>
+
+
+        </Viewbox>
+
+    </Grid>
+</Window>

@@ -1,0 +1,38 @@
+﻿<Window x:Class="SHKT_Project.Pages.TypeSetPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
+      xmlns:local="clr-namespace:SHKT_Project.Pages"
+      mc:Ignorable="d" 
+      Height="280"
+      Title="装配类型设置与切换" Width="530">
+
+    <Grid Background="#FFAAE4FF">
+        <Viewbox VerticalAlignment="Top" >
+            <Canvas x:Name="Canvas1" Width="340" Height="160">
+                <Label Content="装配类型：" FontSize="15" FontFamily="Microsoft Yahei" VerticalContentAlignment="Center" Foreground="Black" Canvas.Left="6" Canvas.Top="40" FontWeight="Black" Height="39"/>
+                <ComboBox  Height="39" Width="240" pu:ComboBoxHelper.HoverBackground="#1EFFA000" pu:ComboBoxHelper.SelectedBackground="#32FFA000" x:Name="TypeItems" Visibility="Visible" FontFamily="Microsoft Yahei"
+                    pu:ComboBoxHelper.CornerRadius="7" Canvas.Left="90" Canvas.Top="40" SelectionChanged="Items_SelectionChanged" />
+                <TextBox x:Name="NewTypeItem"  Height="39" Width="239" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="13" Visibility="Hidden" FontWeight="Black"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" pu:TextBoxHelper.IsClearButtonVisible="True" Canvas.Left="90" Canvas.Top="40" />
+
+                <Button x:Name="saveButton" Height="31" Width="67" Content="保存" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" Visibility="Hidden"  Foreground="Black" FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="24" Canvas.Top="120" Click="Save_Click" />
+                <Button  Height="31" Width="67" Content="切换" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow"  Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="264" Canvas.Top="120" Click="Change_Click" />
+                <Button  Height="31" Width="67" Content="删除" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow"  Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="146" Canvas.Top="120" Click="Delete_Click" />
+                <Button Content="查询" Height="25" Width="45" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow"  Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="231" Click="Query_Click" Canvas.Top="10"  />
+                <Button Content="新增" Height="25" Width="45" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow"  Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="286" Click="Add_Click" Canvas.Top="10"/>
+                <TextBox x:Name="Info" Height="31" Canvas.Left="10" TextWrapping="Wrap" Text="" Canvas.Top="84" Width="320" FontSize="15" Background="#FFAAE4FF"
+                           FontFamily="Microsoft Yahei" Foreground="Black" FontWeight="Black" BorderThickness="0"/>
+                <TextBox x:Name="IdText"  Height="20" Width="55" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="13"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" Canvas.Left="24" Canvas.Top="6" Visibility="Hidden" />
+            </Canvas>
+        </Viewbox>
+    </Grid>
+</Window>

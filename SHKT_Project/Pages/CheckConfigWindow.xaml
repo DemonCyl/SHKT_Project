@@ -1,0 +1,68 @@
+﻿<Window x:Class="SHKT_Project.Pages.CheckConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
+        xmlns:local="clr-namespace:SHKT_Project.Pages"
+        xmlns:local1="clr-namespace:SHKT_Project.Entity"
+        xmlns:assembly="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="检验码配置" Height="470" Width="800">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="gwEnum" MethodName="GetValues" 
+                            ObjectType="{x:Type assembly:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="local1:GwType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid Background="#FFAAE4FF">
+        <Viewbox VerticalAlignment="Top" >
+            <Canvas x:Name="Canvas1" Width="840" Height="470">
+
+                <Label Content="工位：" FontSize="16" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="29" Canvas.Top="10" FontWeight="ExtraBlack"/>
+                <ComboBox x:Name="GwItems" Height="31" Width="113" pu:ComboBoxHelper.HoverBackground="#1EFFA000" pu:ComboBoxHelper.SelectedBackground="#32FFA000" Visibility="Visible" FontFamily="Microsoft Yahei"
+                    pu:ComboBoxHelper.CornerRadius="7" Canvas.Left="92" Canvas.Top="10" />
+
+                <DataGrid x:Name="conList" Width="548" Height="326" pu:DataGridHelper.HeaderMinHeight="30" pu:DataGridHelper.RowMinHeight="23" pu:DataGridHelper.ColumnHorizontalContentAlignment="Center" IsReadOnly="True"
+                           pu:DataGridHelper.SelectedBackground="#44000AFF" pu:DataGridHelper.HoverBackground="#22000AFF" AutoGenerateColumns="True"  CanUserAddRows="False" Canvas.Left="29" Canvas.Top="96" SelectionChanged="conList_SelectionChanged">
+                    
+                </DataGrid>
+
+                <DataGrid x:Name="entryList" Width="200" Height="326" pu:DataGridHelper.HeaderMinHeight="30" pu:DataGridHelper.RowMinHeight="23" pu:DataGridHelper.ColumnHorizontalContentAlignment="Center" IsReadOnly="True"
+                           pu:DataGridHelper.SelectedBackground="#44000AFF" pu:DataGridHelper.HoverBackground="#22000AFF" CanUserAddRows="False" Canvas.Left="630" Canvas.Top="96" >
+                </DataGrid>
+
+                <ComboBox x:Name="TypeItems" Height="31" Width="130" pu:ComboBoxHelper.HoverBackground="#1EFFA000" pu:ComboBoxHelper.SelectedBackground="#32FFA000" Visibility="Visible" FontFamily="Microsoft Yahei"
+                    pu:ComboBoxHelper.CornerRadius="7" Canvas.Left="334" Canvas.Top="10" />
+                <Label Content="装配类型：" FontSize="16" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="239" Canvas.Top="10" FontWeight="ExtraBlack"/>
+                <Button Content="查询" Height="31" Width="60" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="20" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="496" Click="Query_Click" Canvas.Top="10"  />
+                <Button Content="新增" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="29" Click="Add_Click" Canvas.Top="63"  />
+                <Button x:Name="changeBt" Content="更改" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="103" Click="Update_Click" Canvas.Top="63" Visibility="Visible" />
+                <Button x:Name="deleteBt" Content="删除" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="177" Click="Delete_Click" Canvas.Top="63" Visibility="Visible" />
+                <Button x:Name="CancelBt" Content="取消" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="177" Click="Cancel_Click" Canvas.Top="63" Visibility="Hidden" />
+
+                <TextBox x:Name="Info" Height="31" Canvas.Left="29" TextWrapping="Wrap" Text="" Canvas.Top="429" Width="801" FontSize="15" Background="#FFAAE4FF"
+                           FontFamily="Microsoft Yahei" Foreground="Black" FontWeight="Black" BorderThickness="0"/>
+                <Button x:Name="saveBt" Content="保存" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="103" Click="Save_Click" Canvas.Top="63" Visibility="Hidden" />
+                <Button Content="新增" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="630" Click="AddEntry_Click" Canvas.Top="63"  />
+                <Button x:Name="changeBte" Content="更改" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="706" Click="UpdateEntry_Click" Canvas.Top="63" Visibility="Visible" />
+                <Button x:Name="deleteBte" Content="删除" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="779" Click="DeleteEntry_Click" Canvas.Top="63" Visibility="Visible" />
+                <Button x:Name="CancelBte" Content="取消" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="779" Click="CancelEntry_Click" Canvas.Top="63" Visibility="Hidden" />
+                <Button x:Name="saveBte" Content="保存" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="706" Click="SaveEntry_Click" Canvas.Top="63" Visibility="Hidden" />
+            </Canvas>
+        </Viewbox>
+    </Grid>
+</Window>

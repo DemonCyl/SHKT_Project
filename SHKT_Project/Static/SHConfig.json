@@ -1,0 +1,22 @@
+{
+  "DataIpAddress": "192.168.1.106",
+  "DataBaseName": "JASProSta",
+  "Uid": "sa",
+  "Pwd": "123456",
+
+  "PortName1": "COM1",
+  "BaudRate1": 57600,
+
+  "PortName2": "COM2",
+  "BaudRate2": 57600,
+
+  "PortName3": "COM3",
+  "BaudRate3": 57600,
+
+  "PortName4": "COM4",
+  "BaudRate4": 57600,
+
+  "IpAddress": "192.168.0.190",
+  "Port": 5018
+
+}
