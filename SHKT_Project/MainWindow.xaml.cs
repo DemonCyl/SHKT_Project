@@ -299,7 +299,6 @@ namespace SHKT_Project
                 if (barcodeObject != null)
                 {
                     barcodeObject.Text = bar;
-                    //更改一维码的生成方式为Code128码
                     barcodeObject.Barcode = new Barcode128();
                 }
 
