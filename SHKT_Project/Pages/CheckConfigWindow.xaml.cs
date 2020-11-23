@@ -87,12 +87,12 @@ namespace SHKT_Project.Pages
             conList.ItemsSource = null;
             entryList.ItemsSource = null;
             int typeID = 0;
-            var item = TypeItems.SelectedItem.ToString();
+            //var item = TypeItems.SelectedItem.ToString();
             //GwType gwID;
             var gwItem = GwItems.SelectedItem.ToString();
-            if (TypeItems.HasItems && !string.IsNullOrEmpty(item))
+            if (TypeItems.HasItems && !string.IsNullOrEmpty(TypeItems.SelectedItem.ToString()))
             {
-                var type = AssemblyList.Find(f => f.FAssemblyName == item);
+                var type = AssemblyList.Find(f => f.FAssemblyName == TypeItems.SelectedItem.ToString());
                 typeID = type.FInterID;
             }
 

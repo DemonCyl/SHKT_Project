@@ -38,17 +38,14 @@
     <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport, Version=2017.1.16.0, Culture=neutral, PublicKeyToken=417583d16d08abed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Administrator\Desktop\新建文件夹\FastReport.2017.1.16\FastReport.2017.1.16\FastReport.dll</HintPath>
+    <Reference Include="FastReport">
+      <HintPath>..\packages\FastReport.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport.Bars, Version=2013.3.9.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Administrator\Desktop\新建文件夹\FastReport.2017.1.16\FastReport.2017.1.16\FastReport.Bars.dll</HintPath>
+    <Reference Include="FastReport.Bars">
+      <HintPath>..\packages\FastReport.Bars.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport.Editor, Version=2013.3.9.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Administrator\Desktop\新建文件夹\FastReport.2017.1.16\FastReport.2017.1.16\FastReport.Editor.dll</HintPath>
+    <Reference Include="FastReport.Editor">
+      <HintPath>..\packages\FastReport.Editor.dll</HintPath>
     </Reference>
     <Reference Include="HslCommunication, Version=6.2.5.0, Culture=neutral, PublicKeyToken=cdb2261fa039ed67, processorArchitecture=MSIL">
       <HintPath>..\packages\HslCommunication.6.2.5\lib\net451\HslCommunication.dll</HintPath>
