@@ -289,34 +289,41 @@ namespace SHKT_Project
             string bar = null;
             // 装配条码按规则生成
 
-            string path = "C:\\config\\template.frx";
-            Report report = new Report();
-            report.Prepare();
-            report.Load(path);
-            var barcodeObject = report.FindObject("Barcode1") as BarcodeObject;
-            if (barcodeObject != null)
+            try
             {
-                barcodeObject.Text = bar;
-                //更改一维码的生成方式为Code128码
-                barcodeObject.Barcode = new Barcode128();
+                string path = "C:\\config\\template.frx";
+                Report report = new Report();
+                report.Prepare();
+                report.Load(path);
+                var barcodeObject = report.FindObject("Barcode1") as BarcodeObject;
+                if (barcodeObject != null)
+                {
+                    barcodeObject.Text = bar;
+                    //更改一维码的生成方式为Code128码
+                    barcodeObject.Barcode = new Barcode128();
+                }
+
+                report.Show();
+                //report.PrintPrepared();
+                //report.PrintSettings.ShowDialog = false;
+                //report.Print();
+                //report.Dispose();
+
+                //默认不显示打印机选择页面
+                //report.PrintSettings.ShowDialog = false;
+                //获取打印机的名称，这里是通过封装的方法去获取打印机名，这里可以直接指定“打印机名称”;
+                //string strPrintName = PrinterHelper.GetPrintSetting("LocationPrint");
+                ////当前操作打印机
+                //report.PrintSettings.Printer = strPrintName;
+                ////启动打印
+                //report.Print();
+
+                //report.Dispose();
             }
-
-            report.Show();
-            //report.PrintPrepared();
-            //report.PrintSettings.ShowDialog = false;
-            //report.Print();
-            //report.Dispose();
-
-            //默认不显示打印机选择页面
-            //report.PrintSettings.ShowDialog = false;
-            //获取打印机的名称，这里是通过封装的方法去获取打印机名，这里可以直接指定“打印机名称”;
-            //string strPrintName = PrinterHelper.GetPrintSetting("LocationPrint");
-            ////当前操作打印机
-            //report.PrintSettings.Printer = strPrintName;
-            ////启动打印
-            //report.Print();
-
-            //report.Dispose();
+            catch(Exception ex)
+            {
+                log.Error(ex.Message);
+            }
         }
 
         /// <summary>
