@@ -80,7 +80,7 @@ namespace SHKT_Project.Pages
             Query();
         }
 
-        private void Query()
+        public void Query()
         {
             conList.ItemsSource = null;
             entryList.ItemsSource = null;
@@ -94,7 +94,7 @@ namespace SHKT_Project.Pages
                 typeID = type.FInterID;
             }
 
-            recordInfos = dal.GetRecordInfo(gwItem, typeID, barCode.Text.Trim());
+            recordInfos = dal.GetRecordInfo(gwItem, typeID, barCode.Text.Trim(), custCode.Text.Trim());
             if (recordInfos.Any())
             {
                 recordInfos.ForEach(f =>

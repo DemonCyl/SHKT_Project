@@ -41,12 +41,12 @@
                 <Label Content="装配条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="435" Canvas.Top="122" FontWeight="ExtraBlack"/>
                 <TextBox x:Name="gwcode3"  Height="27" Width="180" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
                     pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" Canvas.Left="435" Canvas.Top="154"  FontWeight="Black"/>
-                <ListBox x:Name="list3" Height="185" Canvas.Left="435" Canvas.Top="210" Width="180" FontSize="15"/>
+                <ListBox x:Name="list3" Height="119" Canvas.Left="435" Canvas.Top="210" Width="180" FontSize="15"/>
                 <Label Content="零件条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="435" Canvas.Top="181" FontWeight="ExtraBlack" />
                 <TextBox x:Name="gw1_Copy1"  Height="27" Width="180" Text="OP70" FontFamily="Microsoft Yahei" FontSize="17" HorizontalContentAlignment="Center" IsReadOnly="True"
                     pu:TextBoxHelper.CornerRadius="7" Canvas.Left="435" Canvas.Top="95" FontWeight="Black" Background="#FF0D77F0" Foreground="White" />
 
-                <Label Content="装配条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="639" Canvas.Top="121" FontWeight="ExtraBlack"/>
+                <Label Content="客户条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="639" Canvas.Top="121" FontWeight="ExtraBlack"/>
                 <TextBox x:Name="gwcode4"  Height="27" Width="180" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
                     pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" Canvas.Left="639" Canvas.Top="153"  FontWeight="Black"/>
                 <ListBox x:Name="list4" Height="185" Canvas.Left="639" Canvas.Top="209" Width="180" FontSize="15"/>
@@ -103,6 +103,9 @@
                     pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" VerticalContentAlignment="Top" TextWrapping="Wrap" BorderThickness="0" Background="Yellow" Canvas.Left="676" Canvas.Top="399" Height="62" Width="143" />
                 <Label Content="PLC状态" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="654" Canvas.Top="43" FontWeight="ExtraBlack"/>
                 <Image x:Name="PLCImage" Width="15" Height="13" Canvas.Left="731" Canvas.Top="50"/>
+                <Label Content="客户条码" FontSize="13" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="435" Canvas.Top="335" FontWeight="ExtraBlack"/>
+                <TextBox x:Name="custcode"  Height="27" Width="180" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="15" IsReadOnly="True"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" Canvas.Left="435" Canvas.Top="367"  FontWeight="Black"/>
 
             </Canvas>
 

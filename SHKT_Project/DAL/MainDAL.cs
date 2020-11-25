@@ -182,7 +182,7 @@ namespace SHKT_Project.DAL
         #endregion
 
         #region record
-        public List<RecordInfo> GetRecordInfo(string gwId, int typeId, string code)
+        public List<RecordInfo> GetRecordInfo(string gwId, int typeId, string code, string custCode)
         {
             string sql = $"select top 500 t.*,t1.FAssemblyName from RecordInfo t left join AssemblyType t1 on t.FAssemblyID = t1.FInterID where 1=1 ";
             if (!string.IsNullOrEmpty(gwId))
@@ -197,6 +197,10 @@ namespace SHKT_Project.DAL
             if (!string.IsNullOrEmpty(code))
             {
                 sql += $" and t.FBar like '%{code}%' ";
+            }
+            if (!string.IsNullOrEmpty(custCode))
+            {
+                sql += $" and t.FCustBar like '%{custCode}%' ";
             }
             sql += " Order By t.FDate DESC ";
 
@@ -258,14 +262,16 @@ namespace SHKT_Project.DAL
             }
         }
 
-        public bool SaveInfo(RecordInfo info)
+        public bool SaveInfo(RecordInfo info, GwType type)
         {
-            string sql = @" INSERT INTO RecordInfo (FGWID,FAssemblyID,FBar,FDate) values 
-                             (@gwID,@assemblyID,@codeRule,GETDATE());select SCOPE_IDENTITY();";
+            string sql = @" INSERT INTO RecordInfo (FGWID,FAssemblyID,FBar,FCustBar,FDate) values 
+                             (@gwID,@assemblyID,@codeRule,@custBar,GETDATE());select SCOPE_IDENTITY();";
 
             string sql1 = @"INSERT INTO RecordInfoEntry (FInterID,FCode) VALUES(@Id,@codeRule) ";
             string sql2 = @"INSERT INTO RecordInfoEntry1 (FInterID,FValue) VALUES(@Id,@value) ";
 
+            string update = @"UPDATE RecordInfo SET FCustBar = @cust WHERE FBar = @bar";
+            string sql3 = @"select FBar from RecordInfo where FCustBar = @cust";
 
             using (var conn = new DbHelperSQL(config).GetConnection())
             {
@@ -273,10 +279,30 @@ namespace SHKT_Project.DAL
                 SqlTransaction tran = conn.BeginTransaction();
                 try
                 {
+                    if (type == GwType.OP70) // 绑定客户条码
+                    {
+                        if (!string.IsNullOrEmpty(info.FBar) && !string.IsNullOrEmpty(info.FCustBar))
+                        {
+                            SqlCommand up1 = new SqlCommand(update, conn, tran);
+                            up1.Parameters.AddWithValue("@cust", info.FCustBar);
+                            up1.Parameters.AddWithValue("@bar", info.FBar);
+
+                            up1.ExecuteNonQuery();
+                        }
+                    }
+                    else if (type == GwType.OP80)
+                    {
+                        if (!string.IsNullOrEmpty(info.FCustBar))
+                        {
+                            info.FBar = conn.QuerySingleOrDefault<string>(sql3, new { cust = info.FCustBar });
+                        }
+                    }
+
                     SqlCommand cmd = new SqlCommand(sql, conn, tran);
                     cmd.Parameters.AddWithValue("@gwID", info.FGWID);
                     cmd.Parameters.AddWithValue("@assemblyID", info.FAssemblyID);
                     cmd.Parameters.AddWithValue("@codeRule", info.FBar);
+                    cmd.Parameters.AddWithValue("@custBar", info.FCustBar);
 
                     long id = Convert.ToInt64(cmd.ExecuteScalar());
                     // 零件条码
@@ -309,6 +335,8 @@ namespace SHKT_Project.DAL
                             }
                         }
                     }
+
+                    
 
                     tran.Commit();
                     return true;

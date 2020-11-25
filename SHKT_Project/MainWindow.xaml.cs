@@ -220,12 +220,12 @@ namespace SHKT_Project
                     mark = true;
                 }
             }
-            codeInfo4 = list.Find(f => f.FGWID == GwType.OP80);
-            if (codeInfo4 == null)
-            {
-                remark4.Text = $"该工位没有配置{type.FAssemblyName}的检验码";
-                mark = true;
-            }
+            //codeInfo4 = list.Find(f => f.FGWID == GwType.OP80);
+            //if (codeInfo4 == null)
+            //{
+            //    remark4.Text = $"该工位没有配置{type.FAssemblyName}的检验码";
+            //    mark = true;
+            //}
 
             checkMark = mark;
             //log.Info(checkMark);
@@ -319,7 +319,7 @@ namespace SHKT_Project
 
                 //report.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.Error(ex.Message);
             }
@@ -393,7 +393,7 @@ namespace SHKT_Project
                                     }
                                     record1.entries = recordEntry1;
 
-                                    if (this.SaveData(record1)) // true
+                                    if (this.SaveData(record1, GwType.OP01)) // true
                                     {
                                         // write plc ??
 
@@ -440,7 +440,7 @@ namespace SHKT_Project
                                     }
                                     record2.entries = recordEntry2;
 
-                                    if (this.SaveData(record2)) // true
+                                    if (this.SaveData(record2, GwType.OP40)) // true
                                     {
                                         // write plc ??
 
@@ -477,6 +477,7 @@ namespace SHKT_Project
                                 else
                                 {
                                     record3.FBar = bar3;
+                                    record3.FCustBar = custcode.Text.Trim();
                                     var recordEntry3 = new List<RecordInfoEntry>();
                                     if (barlist3 != null && barlist3.Any())
                                     {
@@ -487,7 +488,7 @@ namespace SHKT_Project
                                     }
                                     record3.entries = recordEntry3;
 
-                                    if (this.SaveData(record3)) // true
+                                    if (this.SaveData(record3, GwType.OP70)) // true
                                     {
                                         // write plc ??
 
@@ -519,11 +520,11 @@ namespace SHKT_Project
                                 var bar4 = gwcode4.Text.Trim();
                                 if (bar4 == string.Empty)
                                 {
-                                    remark4.Text = "装配条码为空！";
+                                    remark4.Text = "客户条码为空！";
                                 }
                                 else
                                 {
-                                    record4.FBar = bar4;
+                                    record4.FCustBar = bar4;
                                     var recordEntry4 = new List<RecordInfoEntry1>();
                                     if (valuelist != null && valuelist.Any())
                                     {
@@ -534,7 +535,7 @@ namespace SHKT_Project
                                     }
                                     record4.entries1 = recordEntry4;
 
-                                    if (this.SaveData(record4)) // true
+                                    if (this.SaveData(record4, GwType.OP80)) // true
                                     {
                                         // write plc ??
 
@@ -542,6 +543,8 @@ namespace SHKT_Project
                                         valuelist.Clear();
                                         remark4.Text = "保存成功!";
                                         saveMark4 = true;
+
+                                        ShowDetail(bar4);
                                     }
                                 }
                             }
@@ -554,6 +557,13 @@ namespace SHKT_Project
 
                     #endregion
 
+                    // OP80 工位结束信号 弹窗提醒
+                    //var custbar = gwcode4.Text.Trim();
+                    //if (custbar != string.Empty)
+                    //{
+                    //    ShowDetail(custbar);
+                    //}
+
                     remark = true;
                 }
                 catch (Exception ex)
@@ -564,7 +574,7 @@ namespace SHKT_Project
                     remark = false;
                 }
             };
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(2);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(10);
             dispatcherTimer.Start();
         }
 
@@ -945,17 +955,22 @@ namespace SHKT_Project
                         }
                         break;
                     case GwType.OP80:
+
+                        // 扫客户条码
                         if (gwcode4.Text.Trim() == string.Empty)
-                        {
-                            if (barcode.Contains(codeInfo4.FBarCodeRule))
-                            {
-                                gwcode4.Text = barcode;
-                            }
-                            else
-                            {
-                                remark4.Text = "装配条码 NG！";
-                            }
-                        }
+                            gwcode4.Text = barcode;
+
+                        //if (gwcode4.Text.Trim() == string.Empty)
+                        //{
+                        //    if (barcode.Contains(codeInfo4.FBarCodeRule))
+                        //    {
+                        //        gwcode4.Text = barcode;
+                        //    }
+                        //    else
+                        //    {
+                        //        remark4.Text = "装配条码 NG！";
+                        //    }
+                        //}
                         break;
                 }
             });
@@ -1006,15 +1021,28 @@ namespace SHKT_Project
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        private bool SaveData(RecordInfo info)
+        private bool SaveData(RecordInfo info, GwType type)
         {
             bool re = false;
             if (info != null)
             {
-                re = dal.SaveInfo(info);
+                re = dal.SaveInfo(info, type);
             }
 
             return re;
+        }
+
+        private void ShowDetail(string custBar)
+        {
+            HistoryWindow hw = new HistoryWindow(dal)
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+            hw.custCode.Text = custBar;
+            hw.Show();
+            hw.Query();
+            hw.Activate();
+
         }
 
     }

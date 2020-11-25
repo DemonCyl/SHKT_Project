@@ -21,18 +21,19 @@
         <Viewbox VerticalAlignment="Top" >
             <Canvas x:Name="Canvas1" Width="840" Height="470">
 
-                <Label Content="工位：" FontSize="16" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="15" Canvas.Top="10" FontWeight="ExtraBlack"/>
-                <ComboBox x:Name="GwItems" Height="31" Width="113" pu:ComboBoxHelper.HoverBackground="#1EFFA000" pu:ComboBoxHelper.SelectedBackground="#32FFA000" Visibility="Visible" FontFamily="Microsoft Yahei"
-                    pu:ComboBoxHelper.CornerRadius="7" Canvas.Left="78" Canvas.Top="10" />
+                <Label Content="工位：" FontSize="16" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="47" Canvas.Top="10" FontWeight="ExtraBlack"/>
+                <ComboBox x:Name="GwItems" Height="31" Width="157" pu:ComboBoxHelper.HoverBackground="#1EFFA000" pu:ComboBoxHelper.SelectedBackground="#32FFA000" Visibility="Visible" FontFamily="Microsoft Yahei"
+                    pu:ComboBoxHelper.CornerRadius="7" Canvas.Left="110" Canvas.Top="10" />
 
-                <DataGrid x:Name="conList" Width="590" Height="326" pu:DataGridHelper.HeaderMinHeight="30" pu:DataGridHelper.RowMinHeight="23" pu:DataGridHelper.ColumnHorizontalContentAlignment="Center" 
+                <DataGrid x:Name="conList" Width="615" Height="326" pu:DataGridHelper.HeaderMinHeight="30" pu:DataGridHelper.RowMinHeight="23" pu:DataGridHelper.ColumnHorizontalContentAlignment="Center" 
                           IsReadOnly="True" pu:DataGridHelper.SelectedBackground="#44000AFF" pu:DataGridHelper.HoverBackground="#22000AFF" CanUserAddRows="False" Canvas.Left="10" Canvas.Top="96" 
                           SelectionChanged="conList_SelectionChanged" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="工位" Binding="{Binding FGWID}" Width="63"/>
-                        <DataGridTextColumn Header="装配类型" Binding="{Binding FAssemblyName}" Width="110"/>
-                        <DataGridTextColumn Header="装配条码" Binding="{Binding FBar}" Width="230"/>
-                        <DataGridTextColumn Header="日期" Binding="{Binding FDate,StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" Width="185"/>
+                        <DataGridTextColumn Header="装配类型" Binding="{Binding FAssemblyName}" Width="100"/>
+                        <DataGridTextColumn Header="装配条码" Binding="{Binding FBar}" Width="145"/>
+                        <DataGridTextColumn Header="客户条码" Binding="{Binding FCustBar}" Width="150"/>
+                        <DataGridTextColumn Header="日期" Binding="{Binding FDate,StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" Width="175"/>
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -41,10 +42,10 @@
                 </DataGrid>
 
                 <ComboBox x:Name="TypeItems" Height="31" Width="157" pu:ComboBoxHelper.HoverBackground="#1EFFA000" pu:ComboBoxHelper.SelectedBackground="#32FFA000" Visibility="Visible" FontFamily="Microsoft Yahei"
-                    pu:ComboBoxHelper.CornerRadius="7" Canvas.Left="320" Canvas.Top="10" />
-                <Label Content="装配类型：" FontSize="16" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="225" Canvas.Top="10" FontWeight="ExtraBlack"/>
+                    pu:ComboBoxHelper.CornerRadius="7" Canvas.Left="373" Canvas.Top="10" />
+                <Label Content="装配类型：" FontSize="16" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="278" Canvas.Top="10" FontWeight="ExtraBlack"/>
                 <Button Content="查询" Height="31" Width="60" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="20" Foreground="Black"  FontWeight="Black"
-                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="503" Click="Query_Click" Canvas.Top="10"  />
+                    pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="557" Click="Query_Click" Canvas.Top="10"  />
 
                 <TextBox x:Name="Info" Height="31" Canvas.Left="29" TextWrapping="Wrap" Text="" Canvas.Top="429" Width="801" FontSize="15" Background="#FFAAE4FF"
                            FontFamily="Microsoft Yahei" Foreground="Black" FontWeight="Black" BorderThickness="0"/>
@@ -59,9 +60,12 @@
                     pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="779" Click="CancelEntry_Click" Canvas.Top="63" Visibility="Hidden" />
                 <Button x:Name="saveBte" Content="保存" Height="28" Width="51" pu:ButtonHelper.ClickStyle="Sink" FontFamily="Microsoft Yahei" Background="Yellow" FontSize="16" Foreground="Black"  FontWeight="Black"
                     pu:ButtonHelper.HoverBrush="#FF6000" pu:ButtonHelper.CornerRadius="7" Canvas.Left="706" Click="SaveEntry_Click" Canvas.Top="63" Visibility="Hidden" />
-                <Label Content="装配条码：" FontSize="16" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="225" Canvas.Top="46" FontWeight="ExtraBlack"/>
+                <Label Content="装配条码：" FontSize="16" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="15" Canvas.Top="46" FontWeight="ExtraBlack"/>
                 <TextBox x:Name="barCode"  Height="31" Width="157" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="13"
-                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" pu:TextBoxHelper.IsClearButtonVisible="True" Canvas.Left="320" Canvas.Top="47" />
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" pu:TextBoxHelper.IsClearButtonVisible="True" Canvas.Left="110" Canvas.Top="47" />
+                <Label Content="客户条码：" FontSize="16" FontFamily="Microsoft Yahei" Foreground="Black" Canvas.Left="278" Canvas.Top="46" FontWeight="ExtraBlack"/>
+                <TextBox x:Name="custCode"  Height="31" Width="157" pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5" Text="" FontFamily="Microsoft Yahei" FontSize="13"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" pu:TextBoxHelper.CornerRadius="7" pu:TextBoxHelper.IsClearButtonVisible="True" Canvas.Left="373" Canvas.Top="47" />
 
             </Canvas>
         </Viewbox>

@@ -30,6 +30,9 @@ namespace SHKT_Project.Entity
         [ColumnWidth("230")]
         public string FBar { get; set; }
 
+        [IgnoreColumn]
+        public string FCustBar { get; set; }
+
         [DisplayName("日期")]
         [ColumnWidth("188")]
         public DateTime FDate { get; set; }
