@@ -34,6 +34,8 @@ namespace SHKT_Project.Entity
 
         public string IpAddress { get; set; }
 
+        public int IpPort { get; set; }
+
     }
 
     public enum GwType

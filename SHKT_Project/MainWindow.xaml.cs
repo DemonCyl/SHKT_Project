@@ -1,6 +1,7 @@
 ﻿using FastReport;
 using FastReport.Barcode;
 using HslCommunication;
+using HslCommunication.Profinet.Omron;
 using HslCommunication.Profinet.Siemens;
 using log4net;
 using Newtonsoft.Json;
@@ -36,7 +37,8 @@ namespace SHKT_Project
     {
         private ConfigData config;
         private MainDAL dal;
-        private SiemensS7Net plc;
+        //private SiemensS7Net plc;
+        private OmronFinsNet plc;
         private OperateResult connect;
         private DispatcherTimer timer = null;
         private SerialPort port1;
@@ -83,10 +85,17 @@ namespace SHKT_Project
             LoadJsonData();
             Init();
 
-            plc = new SiemensS7Net(SiemensPLCS.S1200, config.IpAddress)
+            //plc = new SiemensS7Net(SiemensPLCS.S1200, config.IpAddress)
+            //{
+            //    ConnectTimeOut = 5000
+            //};
+
+            plc = new OmronFinsNet(config.IpAddress, config.IpPort)
             {
+                SA1 = 10,
                 ConnectTimeOut = 5000
             };
+
 
             connect = plc.ConnectServer();
 
@@ -478,15 +487,15 @@ namespace SHKT_Project
                                 {
                                     record3.FBar = bar3;
                                     record3.FCustBar = custcode.Text.Trim();
-                                    var recordEntry3 = new List<RecordInfoEntry>();
-                                    if (barlist3 != null && barlist3.Any())
-                                    {
-                                        barlist3.ForEach(f =>
-                                        {
-                                            recordEntry3.Add(new RecordInfoEntry(f));
-                                        });
-                                    }
-                                    record3.entries = recordEntry3;
+                                    //var recordEntry3 = new List<RecordInfoEntry>();
+                                    //if (barlist3 != null && barlist3.Any())
+                                    //{
+                                    //    barlist3.ForEach(f =>
+                                    //    {
+                                    //        recordEntry3.Add(new RecordInfoEntry(f));
+                                    //    });
+                                    //}
+                                    //record3.entries = recordEntry3;
 
                                     if (this.SaveData(record3, GwType.OP70)) // true
                                     {
@@ -932,6 +941,7 @@ namespace SHKT_Project
                         }
                         break;
                     case GwType.OP70:
+                        // 需要更改
                         if (gwcode3.Text.Trim() == string.Empty)
                         {
                             if (barcode.Contains(codeInfo3.FBarCodeRule))
@@ -945,13 +955,14 @@ namespace SHKT_Project
                         }
                         else
                         {
-                            var co = entry3.Find(f => barcode.Contains(f.FCodeRule));
-                            if (co != null)
-                            {
-                                barlist3.Add(barcode);
-                                entry3.Remove(co);
-                            }
-
+                            //var co = entry3.Find(f => barcode.Contains(f.FCodeRule));
+                            //if (co != null)
+                            //{
+                            //    barlist3.Add(barcode);
+                            //    entry3.Remove(co);
+                            //}
+                            
+                            custcode.Text = barcode;
                         }
                         break;
                     case GwType.OP80:
