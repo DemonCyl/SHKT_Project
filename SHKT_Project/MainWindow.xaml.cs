@@ -372,7 +372,7 @@ namespace SHKT_Project
 
                     #endregion
 
-                    #region 获取保存信号
+                    #region 获取保存信号 -- 放行信号
                     // OP01
                     var singal1 = plc.ReadBool("");
                     if (singal1.IsSuccess)
@@ -565,13 +565,6 @@ namespace SHKT_Project
                     }
 
                     #endregion
-
-                    // OP80 工位结束信号 弹窗提醒
-                    //var custbar = gwcode4.Text.Trim();
-                    //if (custbar != string.Empty)
-                    //{
-                    //    ShowDetail(custbar);
-                    //}
 
                     remark = true;
                 }
@@ -953,7 +946,7 @@ namespace SHKT_Project
                                 remark3.Text = "装配条码 NG！";
                             }
                         }
-                        else
+                        else if (custcode.Text.Trim() == string.Empty)
                         {
                             //var co = entry3.Find(f => barcode.Contains(f.FCodeRule));
                             //if (co != null)
